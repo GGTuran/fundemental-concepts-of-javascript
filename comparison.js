@@ -3,5 +3,5 @@
 // ternary operator
 // condition ? true action : false action
 
-// const age = 20;
-// age>= 18 ? console.log('Adult') : console.log('Teen')
+const age = 20;
+age>= 18 ? console.log('Adult') : console.log('Teen')
