@@ -25,4 +25,8 @@ const need = {
     Time: "Watch",
 }
 const {Main,Thanda} = need;
-console.log(Thanda)
+console.log(Thanda);
+
+// using ternary and optional chaining
+const inner = need?.inner ? need.inner : "Nai";
+console.log(inner)
