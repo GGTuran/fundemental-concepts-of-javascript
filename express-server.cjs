@@ -1,7 +1,11 @@
 const express = require('express');
 const { MongoClient, ServerApiVersion, } = require('mongodb');
 
-const uri = "mongodb+srv://emaJohn:4MADgOcnyLRgjdVb@cluster0.vddbb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// routes
+const postRouter = require("./src/routes/post.route.cjs")
+
+
+const uri = "mongodb+srv://:@cluster0.vddbb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 
 // creating an express instance
@@ -23,22 +27,14 @@ const client = new MongoClient(uri, {
       await client.connect();
 
     //   create db collections
-
-    const postCollection = client.db('postDB').collection('posts');
-
+     const database = client.db('postDB'); 
+   
     app.get('/home', (req,res) =>{
       res.sendFile(__dirname + "/index.html")
   });
 
-    app.post("/create-post" , async(req,res) =>{
-      // console.log(req.body)
-      const postData = req.body;
-      const result = await postCollection.insertOne(postData);
-      res.json({
-        message: "Post Created",
-        data: result,
-      });
-    })
+    // app.post("/create-post" ,)
+    app.use("/posts", postRouter(database));
 
 
 
